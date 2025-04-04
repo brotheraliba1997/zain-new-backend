@@ -69,10 +69,7 @@ export class UserService {
       userData.companyId = companyId;
       if (role == 'admin') {
         const adminFound = await this.prisma.user.findFirst({
-          where: {
-            companyId,
-            role,
-          },
+         
         });
 
         if (adminFound) {
@@ -95,12 +92,12 @@ export class UserService {
         createdAt: 'desc', // Ensure you're ordering by creation date or any unique identifier
       },
     });
-    const lastUserRefrenceNumber = lastUser.referenceNumber ?? 'AX00000';
-    const oldReferenceNumber = lastUserRefrenceNumber.split('AX')[1];
-    const newReferenceNumber = Number(oldReferenceNumber) + 1;
+   
+    
+  
 
-    const formattedNumber = newReferenceNumber.toString().padStart(5, '0');
-    userData.referenceNumber = 'AX' + formattedNumber;
+  
+   
 
     const userCreated = await this.prisma.user.create({
       data: userData,
@@ -189,11 +186,8 @@ export class UserService {
           email: email ?? undefined,
           phone,
           address: address ?? undefined,
-          city: city ?? undefined,
-          state: state ?? undefined,
-          zipCode: zipCode ?? undefined,
-          doctorId: doctorId ?? undefined,
-          companyId: companyId ?? undefined,
+    
+   
         },
       });
 
@@ -251,16 +245,8 @@ export class UserService {
     try {
       const user = await this.prisma.user.findUnique({
         where: { id },
-        include: {
-         
-        },
-        // select: {
-        //   id: true,
-        //   firstName: true,
-        //   lastName: true,
-        //   phone: true,
-        //   email: true,
-        // },
+      
+       
       });
       return response.status(200).send({
         data: user,
@@ -394,19 +380,7 @@ export class UserService {
     const user = await this.prisma.user.findUnique({
       where: { id },
 
-      include: {
-        // shops: {
-        //   select: {
-        //     id: true,
-        //   },
-        // },
-        // role: {
-        //   select: {
-        //     name: true,
-        //     permissions: true,
-        //   },
-        // },
-      },
+    
     });
 
     const sanitizedUser = this.sanitizeUser(user);
