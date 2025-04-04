@@ -252,9 +252,7 @@ export class UserService {
       const user = await this.prisma.user.findUnique({
         where: { id },
         include: {
-          programs: {
-            select: { program: { select: { id: true, name: true } } },
-          },
+         
         },
         // select: {
         //   id: true,
@@ -377,30 +375,7 @@ export class UserService {
         },
         skip,
         take: parsedLimit,
-        include: {
-          company: {
-            select: {
-              name: true,
-            },
-          },
-          programs: {
-            select: {
-              program: {
-                select: {
-                  name: true,
-                },
-              },
-            },
-          },
-          doctor: {
-            select: {
-              id: true,
-              firstName: true,
-              lastName: true,
-            },
-          },
-          devices: { include: { service: true } },
-        },
+       
         // select: {
         //   id: true,
         //   firstName: true,

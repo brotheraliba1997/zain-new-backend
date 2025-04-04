@@ -14,7 +14,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 
-import { NotificationService } from './../notification/notification.service';
+
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -36,7 +36,7 @@ export class UserController {
   constructor(
     private readonly usersService: UserService,
 
-    private readonly notificationService: NotificationService,
+
   ) {}
 
   @Get('me')

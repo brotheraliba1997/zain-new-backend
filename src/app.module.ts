@@ -7,7 +7,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 
 
-import { NotificationModule } from './notification/notification.module';
+
 // import { WebSocketModule } from './websocket/websocket.module';
 
 

@@ -6,11 +6,11 @@ import { JwtService } from '@nestjs/jwt';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { UserController } from './user.controller';
 // import { ChatModule } from 'src/chat/chat.module';
-import { NotificationModule } from 'src/notification/notification.module';
+
 // import { DeviceReadingService } from 'src/deviceReading/deviceReading.service';
 
 @Module({
-  imports: [PrismaModule,  NotificationModule],
+  imports: [PrismaModule],
   controllers: [UserController],
   providers: [UserService, JwtService],
   exports: [UserService],
