@@ -21,36 +21,17 @@ model User {
   firstName   String?
   lastName    String?
   password    String?
-  role        RoleType @default(client)
+  role        String? @default("admin")
   address     String?
-  city        String?
-  zipCode     String?
-  state       String?
-  description String?
-  summary     String?
-  profession  String?  @default("")
+ 
 
   profileImageUrl String? @default("profile-uploads/662fe80bf1be4d55e8a02d9a/1714637040328/FXOvrm8lMhVoSX7DWGOKagaapcU7ri6mI3Bh5ccT.jpg")
-
-  referenceNumber String @unique
-
-  companyId String? @db.ObjectId // Ensure this matches the native type of Provider.id
-
-  doctorId String? @db.ObjectId // Reference to another User (as a doctor)
-  doctor   User?   @relation("DoctorRelation", fields: [doctorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-
-  patients User[] @relation("DoctorRelation")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-enum RoleType {
-  super_admin
-  admin
-  doctor
-  client
-}
+
 
 model Otp {
   id String @id @default(auto()) @map("_id") @db.ObjectId
@@ -61,29 +42,3 @@ model Otp {
 
   @@index([expiresAt], map: "expires_at_idx")
 }
-
-// -------------------------- Notification --------------------------------//
-model Notification {
-  id      String           @id @default(auto()) @map("_id") @db.ObjectId
-  type    NotificationType
-  title   String
-  message String
-  data    Json?            @default("{}")
-
-  createdAt DateTime @default(now())
-}
-
-enum NotificationType {
-  MESSAGE // Notification about a new message
-  REGISTRATION // Notification about a new user registration
-  SUBSCRIPTION // Notification about subscription updates
-  START_MEETING // Notification about a scheduled meeting
-  MEETING // Notification about a scheduled meeting
-  END_MEETING // Notification about a scheduled meeting
-  ALERT // Generic alert or notification
-  CUSTOM // Custom notification type
-}
-
-// -------------------------- Medication Schedule --------------------------------//
-
-// -------------------------- GPS Tracking --------------------------------//
