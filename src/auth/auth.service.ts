@@ -226,10 +226,7 @@ export class AuthService {
       where: {
         id: user.id,
       },
-      include: {
-        // role: true,
-        // shops: true,
-      },
+     
     });
 
     const sanitizedUser = this.userService.sanitizeUser(foundUser);
@@ -246,10 +243,7 @@ export class AuthService {
       where: {
         id: user.id,
       },
-      include: {
-        // role: true,
-        // shops: true,
-      },
+     
     });
 
     const sanitizedUser = this.userService.sanitizeUser(foundUser);
