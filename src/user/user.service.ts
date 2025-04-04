@@ -376,13 +376,7 @@ export class UserService {
         skip,
         take: parsedLimit,
        
-        // select: {
-        //   id: true,
-        //   firstName: true,
-        //   lastName: true,
-        //   phone: true,
-        //   email: true,
-        // },
+       
       }),
       this.prisma.user.count({ where }),
     ]);
